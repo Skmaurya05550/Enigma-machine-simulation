@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma Machine Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Enigma Machine Simulator</h1>
+    <label for="inputText">Enter text:</label>
+    <input type="text" id="inputText" placeholder="Type your message here">
+
+    <div class="radio-container">
+        <label>
+            <input type="radio" name="mode" value="encode" checked> Encode
+        </label>
+        <label>
+            <input type="radio" name="mode" value="decode"> Decode
+        </label>
+    </div>
+
+    <button onclick="processMessage()">Submit</button>
+
+    <div class="output">
+        <h2>Processed Message:</h2>
+        <p id="processedMessage"></p>
+    </div>
+</div>
+
+<script>
+    // Enigma Machine Simulation
+    const rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+    const rotor2 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+    const rotor3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+    const reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+
+    function encodeLetter(letter, rotor) {
+        const letterIndex = letter.charCodeAt(0) - 65;
+        return rotor[letterIndex];
+    }
+
+    function passThroughRotors(letter) {
+        let encoded = encodeLetter(letter, rotor1);
+        encoded = encodeLetter(encoded, rotor2);
+        encoded = encodeLetter(encoded, rotor3);
+        return encoded;
+    }
+
+    function reflect(letter) {
+        const letterIndex = letter.charCodeAt(0) - 65;
+        return reflector[letterIndex];
+    }
+
+    function reverseThroughRotors(letter) {
+        let encoded = String.fromCharCode(rotor3.indexOf(letter) + 65);
+        encoded = String.fromCharCode(rotor2.indexOf(encoded) + 65);
+        encoded = String.fromCharCode(rotor1.indexOf(encoded) + 65);
+        return encoded;
+    }
+
+    function processMessage() {
+        const inputText = document.getElementById("inputText").value.toUpperCase().replace(/[^A-Z]/g, '');
+        const mode = document.querySelector('input[name="mode"]:checked').value;
+        let processedMessage = "";
+
+        if (mode === "encode") {
+            // Encoding process
+            for (let i = 0; i < inputText.length; i++) {
+                let letter = inputText[i];
+                letter = passThroughRotors(letter);
+                letter = reflect(letter);
+                letter = reverseThroughRotors(letter);
+                processedMessage += letter;
+            }
+        } else {
+            // Decoding process (same as encoding due to the nature of the Enigma machine)
+            for (let i = 0; i < inputText.length; i++) {
+                let letter = inputText[i];
+                letter = passThroughRotors(letter);
+                letter = reflect(letter);
+                letter = reverseThroughRotors(letter);
+                processedMessage += letter;
+            }
+        }
+
+        document.getElementById("processedMessage").innerText = processedMessage;
+    }
+</script>
+
+</body>
+</html>
