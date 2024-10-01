@@ -38,7 +38,7 @@ The simulator uses three rotors and a reflector to mimic the basic functionality
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/your-username/enigma-machine-simulator.git
+    git clone https://github.com/skmaurya05550/enigma-machine-simulator.git
     ```
 2. Open the `index.html` file in any modern web browser to start the simulator.
 
