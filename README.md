@@ -10,7 +10,7 @@ This is a simple web-based **Enigma Machine Simulator** that allows users to enc
 
 ## Demo
 
-![Enigma Machine Simulator](./demo-image.png)
+![Enigma Machine Simulator](https://i.ibb.co/MDKhNFk/file-Ob4fe6g0i9-MI3n0-I7-Zi-RZm1r.webp)
 
 ## How to Use
 
@@ -46,7 +46,7 @@ The simulator uses three rotors and a reflector to mimic the basic functionality
 
 Here’s how the simulator looks:
 
-![Screenshot of the Enigma Machine Simulator](./screenshot.png)
+![Screenshot of the Enigma Machine Simulator](https://i.ibb.co/MDKhNFk/file-Ob4fe6g0i9-MI3n0-I7-Zi-RZm1r.webp)
 
 ## License
 
